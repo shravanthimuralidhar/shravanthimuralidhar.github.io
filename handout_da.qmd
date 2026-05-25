@@ -1,0 +1,233 @@
+---
+title: "Handling Duplicates in Data: Challenges & solutions"
+subtitle: "Course: Data Analytics for Business Decissions | Professor: Dr. Stephan Huber"
+author: 
+ - name: Shravanthi Bettadapura Muralidhar
+institute: "Matriculation Number: 401075956"
+date: "today"
+date-format: "DD MMMM YYYY"
+editor: visual
+format: revealjs
+---
+
+## **INTRODUCTION**
+
+Data duplication occurs when the exact same piece of information is created, copied, or stored multiple times within a database, data warehouse, or storage system. It means having redundant records that represent the identical entity, transaction, or event.
+
+Data duplication is a technique that lowers storage overhead by getting rid of duplicate data. These techniques guarantee that on a storage medium, such disc, flash, or tape, only one distinct instance of data is kept. A pointer to the unique data copy is used in place of redundant data blocks. Data duplication and incremental backup are similar in that they copy just the data that has changed since the last backup.
+
+## **THE ROOT CAUSES OF DATA REDUNDANCY** {.scrollable}
+
+**Siloed Departments and Systems**
+
+Any organization with a team-based structure requires a harmonious system to complement its operations. Individually working teams that don’t communicate with each other can lead to redundant data entries. 
+
+**Manual Data Entry**
+
+At the basic level, data entry processes are mostly manual. The personnel responsible might input the same data several times across different systems. This leaves a margin for human error and increases the chances of duplication and inconsistencies. 
+
+**Legacy Integrations and Outdated Systems**
+
+Companies using legacy systems often fail to sync properly due to outdated tech. This creates unsynchronized data copies, leading to data redundancies and proving costly for these enterprises.
+
+**Lack of Centralized Data Ownership**
+
+Enterprises dealing with massive datasets need to be aware of redundancy in DBMS. When no single team or individual manages key data, duplicate records might go unnoticed. Database managers are essential for maintaining data quality and consistently identifying and eliminating redundancies. 
+
+**Poor Version Control and File Duplication**
+
+Teams working over shared drives or emails often copy, rename, and store files in multiple locations without proper version tracking. Consequently, accessing them later can be confusing as to which version is the most up-to-date. Uncontrolled file duplication becomes a serious problem during collaborative work or project handovers.
+
+# **THE HIDDEN COST OF DIRTY DATA**
+
+**1. The Financial Costs (Direct & Hidden)**
+
+Dirty data is a direct leak on an organization's balance sheet, often hidden under line items like cloud infrastructure or marketing spend.
+
+-   **Wasted Marketing and Outbound Budget:** Sending physical mail, catalogs, or targeted advertisements to duplicate addresses, dead email inboxes, or incorrect phone numbers directly burns capital.
+
+-   **Bloated Storage and Compute Fees:** Storing millions of rows of redundant, incomplete, or historical garbage data drives up cloud storage bills. More importantly, it requires more computing power (and higher costs) to run daily analytical queries over bloated datasets.
+
+**2. The Productivity Trap (The "Data Janitor" Problem)**
+
+One of the largest hidden expenses is the massive amount of high-value human labor spent fixing avoidable data errors.
+
+-   **The 80/20 Data Scientist Dilemma:** Multiple industry studies consistently show that data scientists and business analysts spend up to **80% of their time simply finding, cleaning, and preparing data**, leaving only 20% of their time to actually analyze it and build predictive models. Organizations effectively hire expensive machine learning and analytics talent just to use them as data janitors.
+
+-   **Operational Friction for Frontline Teams:** When sales reps or customer support agents have to navigate split customer profiles, missing phone numbers, or outdated interaction histories, their workflow grinds to a halt. They waste valuable minutes verifying basic information with the customer instead of solving their problem or closing a deal.
+
+**3. Strategic Blindspots and Flawed Decision-Making**
+
+If executive leadership makes major corporate decisions based on biased analytics, the strategic costs can be catastrophic.
+
+-   **The"Garbage In, Garbage Out" (GIGO) Principle:** Machine learning models and advanced AI algorithms are entirely dependent on their training data. Feeding dirty data into a predictive algorithm results in flawed forecasts—leading companies to over-manufacture products that aren't selling, misprice services, or misallocate budgets.
+
+-   **Distorted Key Performance Indicators (KPIs):** Duplicate customer records artificially inflate customer acquisition numbers while dragging down metrics like average lifetime value (\$LTV\$). If leadership is looking at a dashboard skewed by formatting inconsistencies or duplicate transactions, they are essentially navigating the market with a broken compass.
+
+**4. Reputational Damage and Regulatory Penalties**
+
+In modern business, data quality issues quickly bubble up to the surface where customers and regulators can see them.
+
+-   **Eroded Customer Experience:** Sending a promotional email addressed to First_Name_Unknown, billing a client twice because of a duplicate record, or failing to remember a customer's history due to fragmented data instantly breaks brand trust. It makes a company look disorganized and incompetent.
+
+-   **Compliance and Compliance Risks:** Under strict modern data privacy frameworks like Europe's **GDPR**, individuals have the "right to be forgotten" or the right to request a copy of all data a company holds on them. If an organization's data is fragmented across multiple siloed, redundant tables, completely wiping or pulling a user's data becomes technically impossible—opening the company up to massive statutory fines.
+
+## **KEY CHALLENGES IN DEDUPLICATION** {.scrollable}
+
+**The Nuance of Fuzzy Matching (Identity Resolution)**
+
+Exact duplicates (where every single character matches perfectly) are easy to catch. The real nightmare is **fuzzy duplicates**—records that represent the same entity but look entirely different due to human error, typos, or varying formats.
+
+-   **Synonyms and Abbreviations:** A system needs to understand that "Str." means "Strasse", "Corp." means "Corporation", and "Robert" might be the same person as "Bob".
+
+-   **The Threshold Tightrope:** Data engineers use mathematical algorithms (like *Levenshtein distance* or *Jaro-Winkler*) to assign a similarity score between 0 and 1 to records. Setting the threshold for what counts as a duplicate is a massive balancing act:
+
+    -   **False Positives (Over-grouping):** Setting the threshold too loose. The system thinks two different customers named "John Smith" living in the same apartment building are the same person and merges their profiles, corrupting the data.
+
+    -   **False Negatives (Under-grouping):** Setting the threshold too strict. The system misses obvious duplicates because one record has a middle initial and the other doesn't, leaving the dirty data intact.
+
+**The Survival and Merging Conundrum (The "Golden Record")**
+
+Once your pipeline successfully identifies three duplicate records representing the same entity, a critical question arises: **Which data do you actually keep?** This is known as defining survivorship rules.
+
+To build the single "Golden Record" from the table above, the deduplication engine cannot just pick one row and delete the rest. It has to stitch them together based on complex logic:
+
+-   Should it trust the *newest* data (Marketing App)?
+
+-   Should it trust the system with the highest data authority for names (CRM)?
+
+-   How does it handle conflicting emails?
+
+Writing code that handles these edge cases systematically across millions of records without losing valuable, unique fragments of information is highly complex.
+
+**Lineage and the "Point of No Return"**
+
+Deduplication can be dangerous. If a destructive deduping script runs automatically and merges records incorrectly, reversing the process is incredibly difficult if the system design didn't account for data lineage.
+
+-   **Loss of Context:** If you delete "redundant" rows to clean a database, you might accidentally destroy historical context. For instance, if a customer changed their address, the old address row looks like a duplicate of their profile, but deleting it destroys the historical record of where their past orders were shipped.
+
+-   **Downstream Breaking Changes:** If other operational applications or external APIs rely on the specific database IDs (UUIDs) of the records you just deleted during a deduplication scrub, those downstream apps will instantly break or throw 404 errors. Data engineers must implement complex "aliasing" or redirect tables to ensure old IDs map seamlessly to the new golden record.
+
+## **A SYSTEMATIC DEDUPLICATION WORKFLOW** {.scrollable}
+
+To handle the challenges of scale, fuzzy matching, and survivorship safely, data engineers use a structured, multi-stage pipeline. The fundamental rule of data deduplication is **never perform destructive operations on raw data directly**. Instead, data should move through a controlled workflow that isolates, scores, and merges records systematically.
+
+**The Systematic Deduplication Pipeline**
+
+**1.Ingestion & Standardization:**
+
+Phase 1: Data Preparation.
+
+Raw data from various sources is brought into a staging area. Before looking for duplicates, the data must speak the same language. This involves uniform casing, stripping whitespace, parsing phone numbers into E.164 format, and standardizing address suffixes (e.g., converting "Strasse" and "Str." to a single standard).
+
+**2.Blocking & Indexing:**
+
+Phase 2: Overcoming Scale.
+
+To avoid the \$O(N\^2)\$ computational trap of comparing every single row to every other row, the dataset is split into "blocks" using a shared attribute. For example, you might only compare records that share the same birth year or postal code. This massively narrows down the number of necessary comparisons.
+
+**3.Matching & Similarity Scoring:**
+
+Phase 3: Identity Resolution.
+
+Within each block, records are evaluated using deterministic rules (exact matches on IDs) and probabilistic models (fuzzy matching on names/emails using algorithms like Levenshtein or Jaro-Winkler). The system pairs potential duplicates and assigns a confidence score between 0 and 1.
+
+**4.Clustering & Thresholding:**
+
+Phase 4: Grouping Results.
+
+Pairs that score above a specific confidence threshold (e.g., greater than 0.85) are grouped into a "Duplicate Cluster." Pairs falling below a lower threshold are dismissed as unique entities, while borderline scores (e.g., 0.70 to 0.85) are routed to an administrative queue for human review.
+
+**5.Survivorship & Merging:**
+
+Phase 5: Creating the Golden Record.
+
+The engine applies pre-defined business logic to consolidate the cluster into a single "Golden Record." It evaluates field-level metadata—such as trusting the most recently updated phone number, or prioritizing a CRM system over a marketing app for the legal name.
+
+**6.Lineage & Downstream Sync:**
+
+Phase 6: Preserving History.
+
+The new Golden Record is written to the production database. Critically, the IDs of the deleted or deactivated duplicate records are stored in a mapping/aliasing table. If a downstream application queries an old, deleted ID, the system automatically redirects it to the new master ID.
+
+## **ADVANCED FUZZY MATCHING** {.scrollable}
+
+Advanced **Fuzzy Matching** (or Identity Resolution) is the mathematical science of determining whether two different text strings point to the exact same real-world entity.
+
+1.  **Edit Distance Algorithms (Character-Based)**
+
+These algorithms measure how much "work" you have to do to turn one string into another by counting character-level changes.
+
+**Levenshtein Distance**
+
+-   It calculates the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one word into another. Example: Changing **"Smith"** to **"Smyth"** is an edit distance of 1 (substitute 'i' for 'y'). Best used for: Catching standard, random keyboard typos or spelling variations in names and IDs.
+
+    2.  **Phonetic Matching (Sound-Based)**
+
+Phonetic algorithms disregard spelling entirely. Instead, they convert words into an alphanumeric code based on **how they sound when spoken aloud** in a specific language.
+
+**Soundex**
+
+It retains the first letter of a word and converts the remaining consonants into numbers based on specific phonetic groups (e.g., labials, dentals), ignoring vowels. Example: Both **"Smith"** and **"Smyth"** resolve to the exact same Soundex code: S530. Limitation: It was designed primarily for English pronunciations and struggles with diverse international surnames.
+
+3.  **Hybrid Frameworks (The Production Standard)**
+
+In high-throughput, enterprise data engineering pipelines, relying on a single algorithm creates too many false matches. Production deduplication frameworks instead use a **Hybrid Classifier Engine.** Instead of applying one metric to an entire row, the pipeline runs different algorithms tailored to specific data types and aggregates them using a weighted formula
+
+Final Match Score = ( w1 . Score Jaro Winkler) + (w2 .Score Jaccard) + (w3 . Score Double Metaphone)
+
+This multidimensional score ensures that if a name has a minor spelling error but the address tokens line up perfectly, the system can confidently flag the match without human intervention.
+
+## **BENCHMARKING STORAGE EFFICIENCY** {.scrollable}
+
+Benchmarking storage efficiency is the process of measuring how well data reduction technologies—specifically data deduplication and compression—optimize physical disk capacity. In modern data infrastructure, evaluating storage efficiency is not just about measuring how much space you save; it is a critical balancing act between capacity optimization and hardware performance penalties.
+
+### 1. Core Storage Efficiency Metrics
+
+To evaluate an infrastructure's storage efficiency, engineers monitor three primary mathematical ratios that quantify the space reclaimed.
+
+-   **Storage Efficiency Ratio (Data Reduction Ratio)**
+
+This is the ultimate high-level metric that expresses the total relationship between the logical data presented to users/applications and the actual physical capacity consumed on the disks.
+
+Interpretation: A ratio of 4:1 means that 4 Terabytes of application data has been condensed to occupy only 1 Terabyte of physical storage (75% space savings).
+
+-   **Deduplication Factor**
+
+This measures the specific efficiency of the block-level deduplication engine by comparing the total number of ingested data blocks against the number of unique blocks written to disk after matching hashes.
+
+-   **Compression Ratio**
+
+This isolates the performance of the local encoding algorithms (such as LZ4, ZSTD, or Deflate) operating on the remaining unique data blocks.
+
+### 2. Critical Pitfalls in Storage Efficiency Benchmarking
+
+Standard storage testing tools often generate misleading results because they fail to replicate how real-world data interacts with data reduction algorithms.
+
+### The "Synthetic Data Trap" (Zeroes vs. Random Data)
+
+-   **The Error:** Traditional performance tools fill test files with either all zeroes or completely random bytes to stress-test disk throughput.
+
+-   **The Result:** All-zero files yield artificially inflated, impossible deduplication ratios (eg : 95% +) Conversely, completely random data has zero patterns, resulting in a 1:1 ratio that completely bypasses the data reduction engine.
+
+-   **The Fix:** Benchmarks must use **content mimicking tools** (such as `SDGen`) that generate synthetic data matching the real-world entropy, token distributions, and duplicate distributions of actual production databases or VM images.
+
+### 3. Missing the Garbage Collection / Deletion Overhead
+
+-   Deduplication engines require an intensive database or hash index to track how many files are pointing to a specific data chunk. When a file is deleted in a deduplicated system, the data block *cannot* be wiped if another file still references it. The system must run complex metadata background checks to decrement reference counters. Many benchmarks evaluate only active writing and completely overlook the massive performance drops that occur when the system attempts to purge and clean old data.
+
+# **CONCLUSION**
+
+-   Handling duplicates is no longer just a routine IT cleanup task; it is a foundational pillar of modern data engineering.
+
+-   Left unchecked, duplicate data acts as a silent tax on an organization—bloating cloud storage costs, slowing down query compute speeds, and distorting the analytical insights used by executive leadership.
+
+-   The journey to data clarity requires moving away from fragmented, siloed database designs and establishing a centralized strategy to govern core entities.
+
+# References:
+
+Hamandawana, P., Cho, D.-J., & Chung, T.-S. (2024). Speed-Dedup: A new deduplication framework for enhanced performance and reduced overhead in scale-out storage. *Electronics*, *13*(22), 4393. <https://doi.org/10.3390/electronics13224393> `Cited by: 3`
+
+Howard, J. P., II. (2020). Phonetic spelling algorithm implementations for R. *Journal of Statistical Software*, *95*(8). [https://doi.org/10.18637/jss.v095.i08](https://www.google.com/search?q=https://doi.org/10.18637/jss.v095.i08) `Cited by: 13`
+
+Lin, S., & Kolaczyk, E. (2024). *Data privacy for record linkage and beyond* (Working Paper No. w32940). National Bureau of Economic Research. [https://doi.org/10.3386/w32940](https://www.google.com/search?q=https://doi.org/10.3386/w32940) `Cited by: 1`
