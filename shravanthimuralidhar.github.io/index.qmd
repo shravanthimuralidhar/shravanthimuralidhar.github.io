@@ -1,0 +1,99 @@
+---
+title: "Handling Data Duplications challenges and solutions"
+author: 
+ - name: Shravanthi Bettadapura Muralidhar
+   affiliations: "Matriculation Number: 401075956"
+date: "today"
+date-format: "DD MMMM YYYY"
+format: revealjs
+editor: visual
+---
+
+# Introduction
+
+## What is Data Duplication?
+
+Data duplication refers to the existence of identical or near-identical records within a dataset or across multiple database silos.
+
+-   **Exact Duplicates:** Byte-for-byte identical records.
+-   **Fuzzy Duplicates:** Records that refer to the same entity but have slight variations (e.g., "J. Doe" vs. "John Doe").
+-   **Redundant Snapshots:** Multiple versions of the same data stored at different points in time without version control.
+
+::: notes
+Exact duplicates are easy to catch with hashing, but fuzzy duplicates require probabilistic matching.
+:::
+
+# The Importance of Data Hygiene
+
+High-quality data is the bedrock of modern business intelligence.
+
+"Bad data is not just a technical problem; it is a financial and strategic liability."
+
+-   According to **Adverity (2024)**, poor data quality leads to wasted marketing spend and skewed analytics.
+-   Data integrity ensures that machine learning models do not learn from biased or "weighted" redundant information.
+
+# The Challenges of Duplication
+
+## Technical Challenges
+
+1.  **Siloed Systems:** CRM, ERP, and marketing platforms often operate independently, creating duplicate leads.
+2.  **Data Entry Errors:** Human mistakes (typos, misspellings) create fuzzy duplicates that "Exact Match" filters miss.
+3.  **M&A Complications:** Merging legacy databases during company acquisitions often leads to massive record overlaps (Kheoos, 2024).
+
+## The Economic Burden
+
+The cost of "Dirty Data" is staggering:
+
+| Impact Category | Estimated Annual Cost     |
+|-----------------|---------------------------|
+| Financial Loss  | \$10M - \$14M per org     |
+| Productivity    | 50% of analyst time       |
+| Storage         | 15-20% wasted cloud spend |
+
+## Analytical "False Positives"
+
+Duplication distorts the "Single Source of Truth": - **Inflated Metrics:** Reporting 10,000 unique customers when 2,000 are duplicates. - **Over-fitting:** ML models give too much weight to repeated observations. - **Customer Fatigue:** Sending the same promotional email three times to one person due to duplicate CRM entries.
+
+# Strategic Solutions
+
+## Automated Deduplication Tools
+
+Modern data stacks utilize automated pipelines to clean data in transit:
+
+-   **Hashing (MD5/SHA):** For finding exact duplicates instantly.
+-   **Upsert Logic:** Using "Update-or-Insert" commands in SQL to prevent creating new rows if a unique ID already exists.
+-   **Standardization:** Converting all text to lowercase and removing special characters before comparison.
+
+## Machine Learning & Fuzzy Matching
+
+When exact matches fail, AI takes over:
+
+-   **Levenshtein Distance:** Measuring how many character changes are needed to turn one string into another.
+-   **Probabilistic Matching:** Using ML models to assign a "similarity score" to records.
+-   **Deduplication Frameworks:** Utilizing libraries like `dedupe` (Python) or `fastLink` (R) for record linkage.
+
+## Data Governance Frameworks
+
+Technology alone cannot solve duplication; governance is required:
+
+1.  **Point-of-Entry Validation:** Real-time checking during manual entry.
+2.  **Data Stewardship:** Assigning owners to specific datasets to ensure ongoing hygiene.
+3.  **Master Data Management (MDM):** Creating a "Golden Record" that acts as the authoritative version of any entity.
+
+# Conclusion
+
+-   **Prevention \> Cure:** Validate data at the entry point to reduce downstream costs.
+-   **Invest in AI:** Fuzzy duplicates require probabilistic tools, not just simple filters.
+-   **Unified Strategy:** Break down departmental silos to create a single source of truth.
+
+# References {.smaller}
+
+Adverity. (2024). *What is data duplication? Examples, causes, and best practice*. <https://www.adverity.com/blog/what-is-data-duplication-examples-causes-and-best-practice-2024-guide>
+
+Dataddo. (n.d.). *Data duplication: Understanding and resolving common issues*. <https://docs.dataddo.com/docs/data-duplication>
+
+Deloitte. (2020). *Quality management in data governance: A strategic priority*. Deloitte University Press.
+
+Kheoos. (2024). *Duplicates in databases: causes, consequences, and effective solutions*. <https://kheoos.com/en/duplicates-in-databases-causes-consequences-and-effective-solutions/>
+
+Orases. (n.d.). *AI data management: Solving duplication issues with automation*. <https://orases.com/blog/solving-data-duplication-issues-automation-ai/>

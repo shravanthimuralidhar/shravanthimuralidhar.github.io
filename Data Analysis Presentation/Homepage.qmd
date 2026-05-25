@@ -1,0 +1,20 @@
+---
+title: "Shravanthi's Academic Homepage"
+about:
+  template: jolla
+  image: profile.jpg # Optional: Add a profile photo to your folder
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/shravanthimuralidhar
+---
+
+Welcome to my personal homepage! Below you will find the interactive slides and materials for our class presentations.
+
+## Presenting Today
+
+-   [📊 Click Here to Open My Presentation Slides](./presentation/index.html)
+
+## Course Materials
+
+-   [📝 View My Project Notes](./notes.html)

@@ -1,0 +1,4 @@
+1. Quatro Presnetation in R studio
+2. You need to make a pdf version of your qautro presentstion
+3. Example code to be added in both the quatro presnetaion and pdf
+4. You neeed to upload your presentation documents in GitHub.
