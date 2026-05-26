@@ -5,7 +5,9 @@ author:
    affiliations: "Matriculation Number: 401075956"
 date: "today"
 date-format: "DD MMMM YYYY"
-format: revealjs
+format:
+  revealjs:
+    embed-resources: true
 editor: visual
 ---
 
