@@ -224,6 +224,30 @@ Standard storage testing tools often generate misleading results because they fa
 
 -   The journey to data clarity requires moving away from fragmented, siloed database designs and establishing a centralized strategy to govern core entities.
 
+## Affidavit {.scrollable}
+::: {.callout-tip appearance="minimal" title="Affidavit" icon=false}
+I hearby affirm that this submitted paper was authored unaided ans solely by me. Additionally, no other sources than those in the reference list were used. parts of this paper, including tables and figures, that have been taken either verbatim or analogous from other works have in each case been properly cited with regard to their origin and authorship. this paper either in parts or in its entirely, be it in the same or similar form, has not been submitted to any other examination board and has not been published.
+
+I acknowledge that the university may use plagiarism detection software to check my thesis. I agree to cooperate with any investigation of suspected plagiarism and to provide any additional information or evidence requested by the university.
+
+Checklist:
+
+- [ ] The handout contains 3-5 pages of text.
+- [ ] The submission contains the Quarto file of the handout.
+- [ ] The submission contains the Quarto file of the presentation.
+- [ ] The submission contains the HTML file of the handout.
+- [ ] The submission contains the HTML file of the presentation.
+- [ ] The submission contains the PDF file of the handout.
+- [ ] The submission contain the PDF file of the presentation.
+- [ ] The title page of the presentation and the handout contain personal details (name, email, matriculation number).
+- [ ] The handout contains a bibliography, created using BibTeX with an APA citation style.
+- [ ] Either the handout or the presentation contains R code that proofs the expertise in coding.
+- [ ] The filled out Affidavit.
+- [ ] The link to the presentation and the handout published on GitHub.
+
+Shravanthi Bettadapura Muralidhar, 26-05-2026, Cologne
+:::
+
 # References:
 
 Hamandawana, P., Cho, D.-J., & Chung, T.-S. (2024). Speed-Dedup: A new deduplication framework for enhanced performance and reduced overhead in scale-out storage. *Electronics*, *13*(22), 4393. <https://doi.org/10.3390/electronics13224393> `Cited by: 3`

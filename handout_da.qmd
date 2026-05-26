@@ -1,13 +1,22 @@
 ---
 title: "Handling Duplicates in Data: Challenges & solutions"
 subtitle: "Course: Data Analytics for Business Decissions | Professor: Dr. Stephan Huber"
-author: 
- - name: Shravanthi Bettadapura Muralidhar
+
+author:
+  - name:
+      given: Shravanthi
+      family: Bettadapura Muralidhar
+    affiliation: Fresenius University of Applied Science
+    email: bettadapura_muralidhar.shravanthi@stud.hs-fresenius.de
+    corresponding: true
+ 
 institute: "Matriculation Number: 401075956"
 date: "today"
 date-format: "DD MMMM YYYY"
 editor: visual
-format: revealjs
+format:
+  html:
+    embed-resources: true
 ---
 
 ## **INTRODUCTION**

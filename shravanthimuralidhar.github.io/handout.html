@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="handout_da_files/libs/clipboard/clipboard.min.js"></script>
-<script src="handout_da_files/libs/quarto-html/tabby.min.js"></script>
-<script src="handout_da_files/libs/quarto-html/popper.min.js"></script>
-<script src="handout_da_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="handout_da_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="handout_da_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="handout_da_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="handout_files/libs/clipboard/clipboard.min.js"></script>
+<script src="handout_files/libs/quarto-html/tabby.min.js"></script>
+<script src="handout_files/libs/quarto-html/popper.min.js"></script>
+<script src="handout_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="handout_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="handout_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="handout_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Shravanthi Bettadapura Muralidhar">
@@ -15,8 +15,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="handout_da_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="handout_da_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="handout_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="handout_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +30,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="handout_da_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
-  <link href="handout_da_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="handout_da_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="handout_da_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="handout_da_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="handout_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link href="handout_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="handout_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="handout_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="handout_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -296,6 +296,7 @@ Shravanthi Bettadapura Muralidhar
 <li>Deduplication engines require an intensive database or hash index to track how many files are pointing to a specific data chunk. When a file is deleted in a deduplicated system, the data block <em>cannot</em> be wiped if another file still references it. The system must run complex metadata background checks to decrement reference counters. Many benchmarks evaluate only active writing and completely overlook the massive performance drops that occur when the system attempts to purge and clean old data.</li>
 </ul>
 </section></section>
+<section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1><strong>CONCLUSION</strong></h1>
 <ul>
@@ -304,7 +305,38 @@ Shravanthi Bettadapura Muralidhar
 <li><p>The journey to data clarity requires moving away from fragmented, siloed database designs and establishing a centralized strategy to govern core entities.</p></li>
 </ul>
 </section>
-
+<section id="affidavit" class="slide level2 scrollable">
+<h2>Affidavit</h2>
+<div title="Affidavit">
+<div class="callout callout-tip no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Affidavit</strong></p>
+</div>
+<div class="callout-content">
+<p>I hearby affirm that this submitted paper was authored unaided ans solely by me. Additionally, no other sources than those in the reference list were used. parts of this paper, including tables and figures, that have been taken either verbatim or analogous from other works have in each case been properly cited with regard to their origin and authorship. this paper either in parts or in its entirely, be it in the same or similar form, has not been submitted to any other examination board and has not been published.</p>
+<p>I acknowledge that the university may use plagiarism detection software to check my thesis. I agree to cooperate with any investigation of suspected plagiarism and to provide any additional information or evidence requested by the university.</p>
+<p>Checklist:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">The handout contains 3-5 pages of text.</label></li>
+<li><label><input type="checkbox">The submission contains the Quarto file of the handout.</label></li>
+<li><label><input type="checkbox">The submission contains the Quarto file of the presentation.</label></li>
+<li><label><input type="checkbox">The submission contains the HTML file of the handout.</label></li>
+<li><label><input type="checkbox">The submission contains the HTML file of the presentation.</label></li>
+<li><label><input type="checkbox">The submission contains the PDF file of the handout.</label></li>
+<li><label><input type="checkbox">The submission contain the PDF file of the presentation.</label></li>
+<li><label><input type="checkbox">The title page of the presentation and the handout contain personal details (name, email, matriculation number).</label></li>
+<li><label><input type="checkbox">The handout contains a bibliography, created using BibTeX with an APA citation style.</label></li>
+<li><label><input type="checkbox">Either the handout or the presentation contains R code that proofs the expertise in coding.</label></li>
+<li><label><input type="checkbox">The filled out Affidavit.</label></li>
+<li><label><input type="checkbox">The link to the presentation and the handout published on GitHub.</label></li>
+</ul>
+<p>Shravanthi Bettadapura Muralidhar, 26-05-2026, Cologne</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section id="references" class="title-slide slide level1 center">
 <h1>References:</h1>
 <p>Hamandawana, P., Cho, D.-J., &amp; Chung, T.-S. (2024). Speed-Dedup: A new deduplication framework for enhanced performance and reduced overhead in scale-out storage. <em>Electronics</em>, <em>13</em>(22), 4393. <a href="https://doi.org/10.3390/electronics13224393" class="uri">https://doi.org/10.3390/electronics13224393</a> <code>Cited by: 3</code></p>
@@ -320,19 +352,19 @@ Shravanthi Bettadapura Muralidhar
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="handout_da_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="handout_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="handout_da_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="handout_da_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="handout_da_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="handout_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
